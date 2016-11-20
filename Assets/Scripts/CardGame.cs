@@ -57,8 +57,18 @@ public class CardGame : MonoBehaviour
 
         // If left mouse button is clicked
 	    if (Input.GetMouseButtonDown(0)) {
+
 	        RaycastHit hit;
 	        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+	        if (Physics.Raycast(ray, out hit)) {
+
+                // All cards should be labeled with Card tag
+                // in order this fuction to work
+	            if (hit.collider.tag == "Card") {
+	                
+	            }
+	        }
 	    }
 
 	}
