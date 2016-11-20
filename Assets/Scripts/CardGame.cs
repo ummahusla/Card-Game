@@ -19,6 +19,9 @@ public class CardGame : MonoBehaviour
     public int CardType;
     public string CardName;
 
+    public int MyLife = 5;
+    public int EnemyLife = 5;
+
     void Start () {
 
         // Player hand
