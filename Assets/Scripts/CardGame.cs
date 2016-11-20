@@ -88,7 +88,26 @@ public class CardGame : MonoBehaviour
 
     string EnemyTurn() {
 
-        return "Card";
+        // Picks a totally random card
+        int PickACardAtRandom = Random.Range(0, HandSize);
+        GameObject ChosenCard = EnemyHand[PickACardAtRandom];
+        string EnemyCard = ChosenCard.name;
+
+
+        // Enemy chooses a new card
+        int NewDraw = Random.Range(0, 5);
+        EnemyHand[PickACardAtRandom] = WithcDeck[NewDraw];
+        CardName = string.Format("Witch{0}", NewDraw);
+
+        // Draws a new card
+        GameObject go = GameObject.Instantiate(WithcDeck[NewDraw]) as GameObject;
+        go.name = CardName;
+        go.transform.position = ChosenCard.transform.position;
+
+        // Destroys a previous chosen card
+        Destroy(ChosenCard);
+
+        return EnemyCard;
 
     }
 
