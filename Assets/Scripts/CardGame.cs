@@ -66,7 +66,9 @@ public class CardGame : MonoBehaviour
                 // All cards should be labeled with Card tag
                 // in order this fuction to work
 	            if (hit.collider.tag == "Card") {
-	                
+                    
+                    // Displays the name of the clicked card
+	                Debug.Log(hit.transform.gameObject.name);
 	            }
 	        }
 	    }
