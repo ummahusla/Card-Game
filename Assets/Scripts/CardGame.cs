@@ -16,12 +16,21 @@ public class CardGame : MonoBehaviour
     private int[] MyCards = new int[6];
     private int[] EnemyCards = new int[6];
 
-    // Use this for initialization
+    public int CardType;
+    public string CardName;
+
     void Start () {
-	
-	}
-	
-	// Update is called once per frame
+	    Hand = new GameObject[HandSize];
+
+        for (int i = 0; i < HandSize; i++) {
+            CardType = Random.Range(0,5);
+            GameObject go = GameObject.Instantiate(FairyDeck[CardType]) as GameObject;
+            Vector3 positionCard = new Vector3((i * 4) + 1, 1, 0);
+            go.transform.position = positionCard;
+            Hand[i] = go;
+        }
+    }
+
 	void Update () {
 	
 	}
