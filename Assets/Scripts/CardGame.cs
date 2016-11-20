@@ -22,6 +22,8 @@ public class CardGame : MonoBehaviour
     public int MyLife = 5;
     public int EnemyLife = 5;
 
+    public bool PlayerHasWon = false;
+
     void Start () {
 
         // Player hand
@@ -72,9 +74,30 @@ public class CardGame : MonoBehaviour
                     
                     // Displays the name of the clicked card
 	                Debug.Log(hit.transform.gameObject.name);
+
+	                GameObject CardClicked = hit.transform.gameObject;
+
+	                string CardEnemyPlayed = EnemyTurn();
+	                ResolveBattle(CardClicked, CardEnemyPlayed);
+	                DrawNewCard(CardClicked);
 	            }
 	        }
 	    }
 
 	}
+
+    string EnemyTurn() {
+
+        return "Card";
+
+    }
+
+    void ResolveBattle(GameObject CardClicked, string CardsEnemyPlayed) {
+        
+    }
+
+    void DrawNewCard(GameObject oldCard) {
+        
+    }
+
 }
