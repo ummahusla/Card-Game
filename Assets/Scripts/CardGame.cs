@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CardGame : MonoBehaviour
-{
+public class CardGame : MonoBehaviour {
 
     public int HandSize = 6;
     public GameObject CardBack;
@@ -79,12 +78,34 @@ public class CardGame : MonoBehaviour
 
 	                string CardEnemyPlayed = EnemyTurn();
 	                ResolveBattle(CardClicked.name, CardEnemyPlayed);
-	                DrawNewCard(CardClicked);
-	            }
+                    DrawNewCard(CardClicked);
+                }
 	        }
 	    }
 
+        // Check if AI or player ran out of lives
+	    if (MyLife <= 0) {
+            // Player ran out of lives
+	        PlayerHasWon = false;
+	        EndGame();
+	    } else if (EnemyLife <= 0) {
+            // Enemy ran out of lives
+	        PlayerHasWon = true;
+            EndGame();
+	    }
+
 	}
+
+    // Check who won the game
+    void EndGame() {
+        if (PlayerHasWon == true) {
+            // Player won, AI lost, load Victory scene
+            Application.LoadLevel("Victory");
+        } else {
+            // Player lost, AI won, load Game Over scene
+            Application.LoadLevel("Game Over");
+        }
+    }
 
     string EnemyTurn() {
 
@@ -135,6 +156,11 @@ public class CardGame : MonoBehaviour
 
     void DrawNewCard(GameObject oldCard) {
         
+    }
+
+    void OnGUI() {
+        GUI.Label(new Rect(10, 70, 100, 20), "Witch: " + EnemyLife);
+        GUI.Label(new Rect(10, 230, 100, 20), "My Life: " + MyLife);
     }
 
 }
