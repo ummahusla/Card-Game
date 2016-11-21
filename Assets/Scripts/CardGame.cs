@@ -78,7 +78,7 @@ public class CardGame : MonoBehaviour
 	                GameObject CardClicked = hit.transform.gameObject;
 
 	                string CardEnemyPlayed = EnemyTurn();
-	                ResolveBattle(CardClicked, CardEnemyPlayed);
+	                ResolveBattle(CardClicked.name, CardEnemyPlayed);
 	                DrawNewCard(CardClicked);
 	            }
 	        }
@@ -111,8 +111,23 @@ public class CardGame : MonoBehaviour
 
     }
 
-    void ResolveBattle(GameObject CardClicked, string CardsEnemyPlayed) {
-        
+    void ResolveBattle(string CardClicked, string CardsEnemyPlayed) {
+
+        // Basic examples of how cards can affect player and AI
+
+        if (CardClicked == "Fairy0") {
+            // Damage is dealt to the enemy
+            EnemyLife--;
+        }
+        if (CardClicked == "Fairy5") {
+            // Players is healed
+            MyLife++;
+        }
+        if (CardsEnemyPlayed == "Witch0") {
+            // Damage is dealt to the player
+            MyLife--;
+        }
+
     }
 
     void DrawNewCard(GameObject oldCard) {
