@@ -32,6 +32,7 @@ public class CardGame : MonoBehaviour {
 
             CardType = Random.Range(0, 5);
             GameObject go = GameObject.Instantiate(FairyDeck[CardType]) as GameObject;
+            go.name = CardName;
             Vector3 positionCard = new Vector3((i * 4) + 1, 1, 0);
             go.transform.position = positionCard;
 
@@ -49,6 +50,7 @@ public class CardGame : MonoBehaviour {
             EnemyCards[y] = CardType;
 
             GameObject go = GameObject.Instantiate(CardBack) as GameObject;
+            go.name = CardName;
             Vector3 positionEnemy = new Vector3((y * 4) + 1, 17, 0);
             go.transform.position = positionEnemy;
 
@@ -155,7 +157,15 @@ public class CardGame : MonoBehaviour {
     }
 
     void DrawNewCard(GameObject oldCard) {
-        
+        int CardChoice = Random.Range(0, 5);
+
+        GameObject NewCard = GameObject.Instantiate(FairyDeck[CardChoice]) as GameObject;
+        CardName = string.Format("Fairy{0}", CardType);
+        NewCard.name = CardName;
+
+        NewCard.transform.position = oldCard.transform.position;
+
+        Destroy(oldCard);
     }
 
     void OnGUI() {
