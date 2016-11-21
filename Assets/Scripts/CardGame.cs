@@ -128,6 +128,9 @@ public class CardGame : MonoBehaviour
             MyLife--;
         }
 
+        // Add remaining Card description
+        // Attack, Block, Heal
+
     }
 
     void DrawNewCard(GameObject oldCard) {
